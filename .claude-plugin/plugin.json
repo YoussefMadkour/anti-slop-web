@@ -1,0 +1,21 @@
+{
+  "name": "anti-slop-web",
+  "description": "Web design direction, context-aware anti-slop guardrails, reference knowledge, and a delivery gate for AI coding agents. One master skill, four specialist skills, one agent.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Youssef Madkour",
+    "url": "https://github.com/YoussefMadkour"
+  },
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "frontend",
+    "ui",
+    "anti-slop",
+    "accessibility",
+    "responsive",
+    "design-system",
+    "skills"
+  ],
+  "homepage": "https://github.com/YoussefMadkour/anti-slop-web"
+}

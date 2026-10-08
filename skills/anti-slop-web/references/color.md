@@ -9,6 +9,13 @@ Related: `charts.md` (data palettes), `design-systems.md` (token architecture),
 
 ---
 
+## Building a palette from purpose
+
+Choose the hue from the brand, the product's domain material, and its feeling, then generate
+scales and semantic tokens with `scripts/palette.py` (OKLCH scales, light and dark tokens, and a
+contrast report). The full process is in `direction.md` §3. The script proposes values; judge
+them on a real screen and adjust.
+
 ## Color by role
 
 **What:** Every color in the system has a job, recorded in `DESIGN.md` §5.

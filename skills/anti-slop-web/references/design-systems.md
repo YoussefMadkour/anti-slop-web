@@ -138,6 +138,59 @@ aliases with `{group.token}` references.
 **Common AI misuse:** Importing a second component library for one widget without checking the
 manifest (CD-01), producing two visual languages on one screen.
 
+## Effect and animated component libraries
+**What:** Collections of copy-in animated components and visual effects, usually built on
+Tailwind and Motion, distributed through the shadcn registry or by copying source: Aceternity UI,
+Magic UI, React Bits, Motion Primitives, Animata, Cult UI, and similar. They sit on top of a
+component system; they are not one.
+**Why care:** Their showcase pieces are a large share of what reads as AI-generated, because
+generated UIs copy them verbatim. The same libraries also contain useful, well-built interaction
+pieces. The difference is whether a piece does a job for this product.
+**Use when:**
+- A piece does a job named in `DESIGN.md` §9 (an animated tab indicator, a dock for a
+  creative portfolio, a file tree for a developer tool, a real product demo frame).
+- One piece is adapted into the product's signature at mid to high CHARACTER and MOTION.
+**Avoid when:**
+- The piece is decoration with no relation to the content (UI-09, UI-10, UI-23).
+- The product is APPLICATION, DASHBOARD, OPERATIONS, or DATA_EXPLORATION at MOTION 3 or below,
+  beyond small functional pieces.
+- Several showcase pieces stack on one page; that is the default cluster (CL-01).
+
+**Read as slop on sight when used as shipped**, unless the content gives them a reason:
+
+| Piece | Usual problem | Rule |
+|-------|---------------|------|
+| Aurora, spotlight, lamp, beams, meteors, sparkles, background gradients that animate | Decoration without identity | UI-10, UI-23 |
+| Dot, grid, or retro-grid backgrounds | Decoration without identity | UI-10 |
+| Glowing or border-beam cards, shine borders, shimmer buttons | Effects as the default surface | UI-09 |
+| Hover-glow bento grid of features | Unearned bento, uniform cards | UI-04, UI-03 |
+| Text generate, typewriter, flip-words, gradient-animated headline | Motion without purpose; often breaks screen readers | UI-23, A11Y |
+| Infinite moving testimonial cards, logo marquees | Often fabricated proof; motion without a pause control | IN-01, A11Y-10 |
+| Number tickers on invented metrics | Invented metrics | IN-02 |
+| Rotating globe, particle field, 3D tilt cards | Generic imagery and effects | UI-22, UI-09 |
+| Fake terminal or code window that types itself | Costume product shot | UI-22 |
+
+**Usually fine, adapted:** animated tab and segmented-control indicators, accordions and
+disclosures with height animation, docks and command menus where they fit the archetype, file
+trees, animated numbers for one real figure on a marketing page, a marquee of real logos that
+pauses on hover and focus.
+
+**Adapting a piece so it belongs to the product:**
+1. Check what it imports against the manifest and the Tailwind version (v3 versus v4 syntax);
+   install only what is missing and say so (CD-01).
+2. Replace hard-coded colors, radii, shadows, and durations with the project's tokens (UI-30,
+   UI-31). Effect components ship with their own palette, often the default AI palette (UI-08).
+3. Remove the parts that have no job; most pieces carry two or three effects at once.
+4. Add reduced-motion handling and pause off-screen; many pieces ship without either (A11Y-10).
+5. Check accessibility: text split into per-character spans needs an accessible label on the
+   container, and decorative layers need `aria-hidden` and no focusable children.
+6. Use at most one showcase piece per view, and only where it carries the signature (UI-27).
+7. Record source and adaptation in `DESIGN.md` §8 so later audits know it is deliberate.
+
+**Common AI misuse:** Assembling a landing page from the libraries' demo pages: spotlight hero,
+text-generate headline, bento grid with glow, infinite testimonials, and a shimmer button,
+all in the library's colors.
+
 ## Platform-native identity
 At low CHARACTER, looking like the platform is a valid identity. Users of a Shopify app, a Teams
 tab, or an internal tool built on the company system benefit from familiarity. Record the choice in

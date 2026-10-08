@@ -9,8 +9,9 @@ license: MIT
 **Design direction first. Anti-slop second. Reference knowledge third. Delivery gate last.**
 
 This skill keeps AI-built interfaces from collapsing into the statistical average of every
-template the model has seen, without replacing that average with a new house style. It is a
-filter and a reasoning process. It does not prescribe colors, fonts, or layouts.
+template the model has seen, without replacing that average with a new house style. It has no
+preset colors, fonts, or layouts; instead it works like a designer, choosing specific ones from
+each product's purpose, and then filters the result.
 
 Two principles govern every rule in this kit:
 
@@ -44,6 +45,11 @@ pattern this kit would normally flag, follow the brand and record a waiver (see 
 
 Run these steps in order. For a small change to an existing screen, steps 1 to 6 may take
 seconds: read `DESIGN.md`, confirm it covers the change, and build.
+
+Steps 1 to 6 are design work, not paperwork. Act as the product's visual and UI designer:
+read the brief, explore directions, and commit to a specific palette, typeface, and composition
+that you can explain from the product. Follow [`direction.md`](direction.md) for the process
+(directions, palette, type, composition, critique) whenever direction is being set.
 
 ### 1. Understand the product
 Establish: what the product is, who uses it, the primary tasks on this screen, the usage
@@ -87,6 +93,12 @@ single firework). One or none: two signatures dilute each other. At low CHARACTE
 signature is often restraint itself, executed rigorously; say so instead of inventing
 decoration. Never add novelty just to fill this field.
 
+### 5b. Explore directions, then choose palette and type
+For a new product, surface, or redesign, write two or three distinct directions and recommend
+one (`direction.md` §2). Then choose the palette from meaning to values, generating scales and
+checking contrast with `scripts/palette.py`, and choose type by shortlisting and testing faces
+with real content (`direction.md` §3 and §4). Skip what an existing brand already decides.
+
 ### 6. Write or update `DESIGN.md`
 Use [`templates/DESIGN.md`](templates/DESIGN.md) at the project root. Update an existing
 file instead of overwriting it. Mark it `Status: proposed` until the owner confirms;
@@ -108,6 +120,9 @@ Baseline engineering discipline while building:
   then a JS animation library, then canvas or WebGL. Animate `transform` and `opacity`.
 - Content: real copy and data from the user, or labeled placeholders. Never invent proof.
 
+After building the key screen, critique it like a designer before rolling the language out
+(`direction.md` §6): first glance, squint, grayscale, edges, swap, and adjective tests.
+
 ### 8. Load only the references this task needs
 References teach context (when a pattern fits, when it does not, tradeoffs, accessibility,
 common AI misuse). They are not mandates. Load by task:
@@ -120,6 +135,9 @@ common AI misuse). They are not mandates. Load by task:
 | Form-heavy application | `references/forms.md`, `components.md`, plus skill `anti-slop-a11y` |
 | App shell, navigation, IA | `references/navigation.md`, `layouts.md` |
 | Choosing or extending a component library, tokens | `references/design-systems.md`, `color.md` |
+| Adding effect or animated components (Aceternity, Magic UI, and similar) | `references/design-systems.md`, `motion.md` |
+| Animation needing a JS library, scroll orchestration, Lottie, Rive, or WebGL | `references/motion.md`, `animation-libraries.md` |
+| Redesign proposal | the review set below, plus `design-systems.md`, `animation-libraries.md`, and the archetype's references |
 | Editorial or long-form content | `references/typography.md`, `layouts.md` |
 | Any audit or review (visual-system scan) | `references/typography.md`, `color.md`, `components.md`, `design-systems.md` |
 
@@ -183,9 +201,26 @@ a reviewer could check (brand, content, user research, platform convention), not
 - **Build:** steps 1 to 11.
 - **Review an existing UI:** steps 1 to 4 to understand it, then 8 to 11. Step 8 is not
   optional in review: always load `typography.md`, `color.md`, `components.md`, and
-  `design-systems.md` for the visual-system scan, plus the references for the archetype. Report findings as
-  a numbered list with rule ID, severity, evidence, and proposed fix. Change nothing until
-  the user picks which findings to fix, unless they asked you to fix directly.
+  `design-systems.md` for the visual-system scan, plus the references for the archetype.
+  Report findings as a numbered list with rule ID, severity, evidence, and proposed fix. Change
+  nothing until the user picks which findings to fix, unless they asked you to fix directly.
+- **Redesign:** only when the user asks for one. Never propose a redesign from a review on your
+  own; a review fixes defects within the existing system.
+  1. Steps 1 to 4. Establish what is driving the redesign; if unclear, ask one question
+     ("What is wrong with the current one, and what must not change?").
+  2. Run the full review (steps 8 to 10) on the current UI. This is the baseline; the redesign
+     must resolve its P0 and HIGH findings.
+  3. Write a proposal from [`templates/redesign-proposal.md`](templates/redesign-proposal.md):
+     why, baseline, what stays, what changes (dials now versus proposed, signature, palette,
+     type), component library decision with a current-to-proposed component mapping, motion
+     plan (tier, library, each animation with its job and reduced-motion version), migration
+     order, risks. Load `design-systems.md` and `animation-libraries.md` for these sections.
+  4. **Stop for approval.** Change no code until the owner approves or edits the proposal.
+  5. Update `DESIGN.md` from the approved proposal, then build in the migration order (tokens,
+     primitives, shell, screens, cleanup), running steps 7 to 11 for each slice so every slice
+     ships consistent.
+  Keep the brand, content, and information architecture unless the proposal says otherwise
+  with a reason. A redesign that only swaps one generic look for another fails UI-01.
 
 ## Files
 
@@ -193,8 +228,11 @@ a reviewer could check (brand, content, user research, platform convention), not
 anti-slop-web/
   SKILL.md                 this file (always loaded)
   archetypes.md            archetype profiles, dial ranges, reference routing
+  direction.md             designer's process: brief, directions, palette, type, composition, critique
+  scripts/palette.py       OKLCH palette scales and semantic tokens with a contrast report
   rules.md                 integrity, function, visual, and visual-system rules (IN, FN, UI, CL)
   templates/DESIGN.md      project design direction template
+  templates/redesign-proposal.md   proposal written in Redesign mode before any code changes
   references/              pattern knowledge, loaded per task
   audits/                  design, accessibility, responsive audits and the delivery gate
 ../anti-slop-a11y/         A11Y rules     ../anti-slop-responsive/   RS rules

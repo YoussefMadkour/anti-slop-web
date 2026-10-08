@@ -79,6 +79,16 @@ there (for example "UI-08 default palette: brand guide v3 specifies indigo as pr
 waived. Decisions that already match a rule's "Acceptable when" (a dark theme in a control room)
 are recorded as PASS, not waived.
 
+## Modes
+
+- **Build:** set direction, write `DESIGN.md`, build, audit, deliver.
+- **Review:** audit an existing UI for AI tells *and* for drift from its own visual system
+  (type scale, color tokens, radius, shadow, spacing, component sources), plus accessibility and
+  responsive defects. Reports numbered findings; changes nothing until you choose.
+- **Redesign:** only when you ask. Reviews the current UI as a baseline, then writes a proposal
+  (what stays, what changes, component library and component mapping, motion plan with library
+  choice, migration order) and stops for approval before touching code.
+
 Agent-written direction is marked `Status: proposed` until the owner confirms it. Agents left to
 choose a direction tend to fall back on their defaults, so the file says plainly that it is a
 proposal.
@@ -204,16 +214,16 @@ use them (Codex, Cursor, Windsurf, Copilot, Gemini CLI, or a raw API call).
 
 ## Token budget
 
-The master skill is about 1,700 words and loads on every UI task. The other files load only
+The master skill is about 2,100 words and loads on every UI task. The other files load only
 when needed:
 
 | Layer | Loads when | Size |
 |-------|-----------|------|
-| `anti-slop-web/SKILL.md` | Every web UI task | about 1,700 words |
+| `anti-slop-web/SKILL.md` | Every web UI task | about 2,100 words |
 | `archetypes.md`, `templates/DESIGN.md` | Setting direction | about 1,200 and 1,100 words |
 | Specialist skills | Their concern is in play | about 1,600 to 2,400 words each |
 | One to four reference files | The task needs them | about 1,200 to 2,900 words each |
-| `rules.md` and audits | Auditing before delivery | about 4,700 words, plus 400 to 700 per audit |
+| `rules.md` and audits | Auditing before delivery | about 5,500 words, plus 400 to 700 per audit |
 
 A dashboard task typically loads the master skill, `dashboards.md`, `charts.md`, and `tables.md`.
 It does not load the marketing references or the copy skill unless copy is being written.
@@ -232,10 +242,13 @@ anti-slop-web/
 │   ├── anti-slop-web/              master skill (always loaded)
 │   │   ├── SKILL.md
 │   │   ├── archetypes.md
-│   │   ├── rules.md                IN, FN, UI, CL rules
-│   │   ├── templates/DESIGN.md
+│   │   ├── direction.md            designer's process: directions, palette, type, critique
+│   │   ├── scripts/palette.py      OKLCH palette and contrast report
+│   │   ├── rules.md                IN, FN, UI (incl. visual-system UI-29 to UI-32), CL rules
+│   │   ├── templates/              DESIGN.md, redesign-proposal.md
 │   │   ├── references/             layouts, typography, color, components, navigation, motion,
-│   │   │                           dashboards, charts, tables, forms, design-systems
+│   │   │                           animation-libraries, dashboards, charts, tables, forms,
+│   │   │                           design-systems
 │   │   └── audits/                 design, accessibility, responsive, delivery gate
 │   ├── anti-slop-a11y/             A11Y rules + scripts/contrast.py
 │   ├── anti-slop-responsive/       RS rules

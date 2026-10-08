@@ -5,7 +5,7 @@ cheaply. Load this file when a task adds transitions, scroll effects, or animate
 The MOTION dial in `DESIGN.md` §2 and §9, and the brand, override everything here. Durations
 below are starting points, not limits.
 
-Related: `components.md` (overlays), `charts.md` (data animation), A11Y-10, UI-23, CD-03, CD-08, CD-09.
+Related: `animation-libraries.md` (choosing a library), `components.md` (overlays), `charts.md` (data animation), A11Y-10, UI-23, CD-03, CD-08, CD-09.
 
 ---
 
@@ -37,7 +37,8 @@ Use the lightest tier that achieves the effect, and avoid running two systems on
 2. **Native platform features:** `@starting-style` for entry animations, scroll-driven
    animations, the View Transitions API.
 3. **A JS animation library:** coordinated sequences, layout animations, gestures, interruptible
-   springs. Verify it is installed before importing (CD-01).
+   springs. Verify it is installed before importing (CD-01). Choosing one:
+   `animation-libraries.md`.
 4. **Scroll orchestration libraries:** pinning and scrubbing long narratives.
 5. **Canvas or WebGL:** scenes, particles, 3D. Highest cost; needs a fallback.
 

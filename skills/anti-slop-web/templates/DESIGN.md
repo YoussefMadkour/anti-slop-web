@@ -40,6 +40,10 @@ CHARACTER: <1-10> | <one-line reason>
 
 ## 3. Design intent
 
+Direction: <name and one-sentence idea of the chosen direction; directions considered and why
+this one won>
+Domain material: <what the product's world looks like offline, used as a source of visual ideas>
+
 The interface should feel:
 - <e.g. calm under pressure>
 - <e.g. precise, like a well-made instrument>
@@ -62,6 +66,9 @@ Why it belongs to this product: <reason>
 Sustained in: <where it recurs>
 
 ## 5. Palette
+
+Derivation: <where the primary hue comes from (brand, domain material, feeling, contrast with
+competitors) and the neutral temperature; generated with scripts/palette.py or by hand>
 
 <!-- Each color: name, value, role. Roles keep the accent from spreading everywhere. -->
 
@@ -105,6 +112,7 @@ Buttons: <hierarchy: primary, secondary, tertiary, destructive; sizes>
 Menus: <trigger patterns, keyboard behavior>
 Modals: <when to use dialogs versus inline or drawers; destructive confirmation pattern>
 Component library: <library and version, or "custom">; <re-tokenized? yes/no and why>
+Effect components: <none | source (e.g. Magic UI), which pieces, where, and how they were adapted>
 
 ## 9. Motion
 
@@ -114,6 +122,7 @@ Allowed animation: <list>
 Ambient animation: <none | what and where; must be pausable and respect reduced motion>
 Reduced-motion behavior: <what replaces each animation when the user prefers reduced motion>
 Implementation tier: <CSS | scroll-driven CSS | JS library (name) | canvas or WebGL>
+Animation library: <none | name and version, and why CSS was not enough; one system per product>
 
 ## 10. Data visualization
 

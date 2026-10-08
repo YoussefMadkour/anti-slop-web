@@ -42,6 +42,12 @@ examples, and choose from the product's needs. Illustrative examples of voice, n
 | Warm, consumer | Rounded or humanist sans, generous spacing |
 | Expressive, brand-led | A display face with clear personality, used structurally |
 
+### Shortlist and test
+Shortlist three faces with one line each on why they fit; include the system stack or a popular
+UI face as an honest option. Set the product's real headings, a dense table row, numbers, and the
+longest label in each, at the smallest size used. Keep the one that serves the jobs and the voice;
+record the reason in `DESIGN.md` §6. Process: `direction.md` §4.
+
 ## Pairing
 
 **What:** Combining faces for display and body.

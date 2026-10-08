@@ -4,6 +4,30 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses semantic versioning.
 Rule IDs are stable across versions; retired rules are marked, never renumbered.
 
+## [1.2.0] - 2026-10-08
+
+### Added
+- Redesign mode: baseline review, a written proposal from the new
+  `templates/redesign-proposal.md` (what stays, what changes, component library and component
+  mapping, motion plan, migration order), and a hard stop for approval before any code changes.
+- `references/animation-libraries.md`: when to use CSS, Motion, GSAP, Anime.js, AutoAnimate,
+  React Spring, Lottie, Rive, Three.js, and Lenis; reduced-motion handling per library; recipes by
+  archetype; a pre-ship checklist.
+- Effect and animated component libraries section in `references/design-systems.md` (Aceternity
+  UI, Magic UI, React Bits, Motion Primitives, and similar): pieces that read as slop as shipped,
+  pieces that are usually fine, and a seven-step adaptation procedure.
+- `DESIGN.md` template fields for effect components (§8) and animation library (§9).
+- `direction.md`: the designer's process (read the brief, explore two or three directions,
+  choose palette and type from meaning, compose, critique with first-glance, squint, grayscale,
+  edge, swap, and adjective tests). Wired into workflow steps 1 to 7 and the agent.
+- `scripts/palette.py`: OKLCH scales from seed colors, light and dark semantic tokens, and a
+  WCAG contrast report with CI-friendly exit codes.
+- `DESIGN.md` template fields for chosen direction, domain material, and palette derivation.
+
+### Changed
+- Reference routing covers effect components, animation libraries, and redesign proposals.
+- `web-design-architect` agent gains a Redesign workflow.
+
 ## [1.1.0] - 2026-10-08
 
 ### Added

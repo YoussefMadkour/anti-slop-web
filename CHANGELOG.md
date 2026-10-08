@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses semantic versioning.
 Rule IDs are stable across versions; retired rules are marked, never renumbered.
 
+## [1.1.0] - 2026-10-08
+
+### Added
+- Visual-system consistency rules UI-29 (type off the scale), UI-30 (color outside the token
+  system), UI-31 (shape and spacing off the scale), UI-32 (mixed or duplicated components). They
+  measure drift against the project's own system and apply in every archetype.
+- Visual-system scan in the design audit: inventory of type, color, radius, shadow, spacing, and
+  component sources, with example search patterns.
+- "Visual system" gate in the delivery gate.
+
+### Changed
+- Review mode now runs workflow step 8 and always loads the typography, color, components, and
+  design-systems references, so reviews judge style and not only AI tells.
+- UI-27 no longer covers hard-coded values; they are reported under UI-29 to UI-31.
+- APPLICATION, DASHBOARD, and OPERATIONS weigh UI-29 to UI-32 heavily.
+
 ## [1.0.0] - 2026-10-05
 
 ### Added

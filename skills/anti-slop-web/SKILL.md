@@ -121,6 +121,7 @@ common AI misuse). They are not mandates. Load by task:
 | App shell, navigation, IA | `references/navigation.md`, `layouts.md` |
 | Choosing or extending a component library, tokens | `references/design-systems.md`, `color.md` |
 | Editorial or long-form content | `references/typography.md`, `layouts.md` |
+| Any audit or review (visual-system scan) | `references/typography.md`, `color.md`, `components.md`, `design-systems.md` |
 
 Specialist skills load when their concern is in play: `anti-slop-a11y` (any interactive UI),
 `anti-slop-responsive` (any layout), `anti-slop-copy` (any user-facing text),
@@ -131,6 +132,9 @@ Follow [`audits/design-audit.md`](audits/design-audit.md) against
 [`rules.md`](rules.md). Apply each rule only within its scope (archetype), honor the waivers
 in `DESIGN.md` §13, and look for clusters rather than isolated tells: one gradient is not
 slop; gradient text plus aurora blobs plus glass cards plus a "Powered by AI" pill is.
+The audit has two halves: the tell scan (does this look generic?) and the visual-system scan
+(does the UI follow its own type, color, shape, spacing, and component system? UI-29 to UI-32).
+Run both. A UI can be free of AI tells and still be inconsistent.
 
 ### 10. Run accessibility and responsive checks
 Follow [`audits/accessibility-audit.md`](audits/accessibility-audit.md) and
@@ -177,7 +181,9 @@ a reviewer could check (brand, content, user research, platform convention), not
 ## Modes
 
 - **Build:** steps 1 to 11.
-- **Review an existing UI:** steps 1 to 4 to understand it, then 9 to 11. Report findings as
+- **Review an existing UI:** steps 1 to 4 to understand it, then 8 to 11. Step 8 is not
+  optional in review: always load `typography.md`, `color.md`, `components.md`, and
+  `design-systems.md` for the visual-system scan, plus the references for the archetype. Report findings as
   a numbered list with rule ID, severity, evidence, and proposed fix. Change nothing until
   the user picks which findings to fix, unless they asked you to fix directly.
 
@@ -187,7 +193,7 @@ a reviewer could check (brand, content, user research, platform convention), not
 anti-slop-web/
   SKILL.md                 this file (always loaded)
   archetypes.md            archetype profiles, dial ranges, reference routing
-  rules.md                 integrity, function, and visual rules (IN, FN, UI, CL)
+  rules.md                 integrity, function, visual, and visual-system rules (IN, FN, UI, CL)
   templates/DESIGN.md      project design direction template
   references/              pattern knowledge, loaded per task
   audits/                  design, accessibility, responsive audits and the delivery gate

@@ -510,7 +510,7 @@ platform's ecosystem and should match it (a Shopify app using Polaris).
 ### UI-27: Declared direction not executed
 **Tell:** The output contradicts `DESIGN.md`: a VARIANCE 8 page that is fully symmetric, a MOTION 1
 product with scroll choreography, a declared signature element that appears once or not at all,
-two competing signatures, tokens ignored in favor of hard-coded values.
+two competing signatures. (Hard-coded values that bypass tokens are UI-29 to UI-31.)
 **Why:** Direction that is declared but not built is decoration on paper. It also means the audit
 cannot trust the document.
 **Default correction:** Bring the build in line with `DESIGN.md`, or update `DESIGN.md` if the
@@ -530,13 +530,88 @@ console built on Carbon, a Shopify app on Polaris). Consistency with a platform 
 **Scope:** All.
 **Severity:** MEDIUM.
 
+### Visual-system consistency (UI-29 to UI-32)
+
+UI-01 to UI-28 ask whether a choice looks generic. UI-29 to UI-32 ask whether the product follows
+its own visual system. They measure drift against the system in `DESIGN.md` §5, §6, and §8, or,
+when there is no `DESIGN.md`, against the de facto system: the tokens, theme config, and dominant
+values the codebase already uses. They never judge the system's taste; a plain system applied
+consistently passes. Evidence comes from the inventory in the design audit's visual-system scan.
+These rules are about consistency, not the generated look, so they do not count toward CL-01.
+
+### UI-29: Type off the scale
+**Tell:** Font sizes, weights, line-heights, or families that are not in the type scale: arbitrary
+values (`text-[15px]`, `font-size: 13.5px`), several near-duplicate sizes doing the same job (14,
+15, and 15.5px body text), a third family appearing in one component, headings that skip or
+invert the scale, numeric columns without tabular figures.
+**Why:** Type hierarchy only reads when there are a few distinct steps used the same way
+everywhere. Near-duplicates look like mistakes and weaken the real steps.
+**Default correction:** Collapse values onto the scale (see `references/typography.md`, Modular
+scale and Per-role settings). Define roles (display, heading, body, label, caption, code) and
+use them by role rather than by size.
+**Acceptable when:** A one-off value is documented in `DESIGN.md` (a hero display size, an
+optical adjustment for a specific face) or comes from rendered user or third-party content.
+**Scope:** All. Weigh heavily in APPLICATION, DASHBOARD, and OPERATIONS, where consistency is the
+hierarchy.
+**Severity:** MEDIUM. LOW for a single isolated value.
+
+### UI-30: Color outside the token system
+**Tell:** Hard-coded color values (hex, rgb, hsl, Tailwind palette classes such as `bg-blue-500`)
+in components when the project has color tokens; several near-identical grays or accents doing
+one job; semantic colors used outside their role (success green as decoration, a data color as a
+button); a dark theme that works only because hard-coded values happen to look fine.
+**Why:** Off-token colors break theming, drift apart over time, and erase the roles that make
+color mean something (UI-11).
+**Default correction:** Replace with the semantic token for the role (see `references/color.md`
+and `references/design-systems.md`, Three-tier tokens). If no token fits, add one to the system
+rather than inlining the value.
+**Acceptable when:** The project is small enough that a handful of CSS variables is the system and
+the value is one of them; the color is content (a user's avatar color, a chart series from a
+documented data palette); a third-party embed.
+**Scope:** All.
+**Severity:** MEDIUM. HIGH when it breaks a shipped theme (then report FN-06) or a contrast pair
+(then report A11Y-04).
+
+### UI-31: Shape and spacing off the scale
+**Tell:** Radius, shadow, border-width, or spacing values outside the scale: arbitrary values
+(`rounded-[10px]`, `p-[13px]`, `margin: 18px`), more distinct radii or shadows than element roles,
+the same element type with different radius or padding on different screens.
+**Why:** Shape and spacing express structure. When values drift, similar elements stop looking
+related and grouping stops reading. (The look of one uniform or oversized radius is UI-13; visual
+spacing rhythm is UI-15. This rule is about values drifting from the scale.)
+**Default correction:** Map each value to the nearest scale step by element role (see
+`references/components.md`, Radius and Shadow and elevation). Add a step only when a real role
+needs it.
+**Acceptable when:** Optical adjustments documented in `DESIGN.md`; values computed from layout
+(a sticky offset equal to the header height).
+**Scope:** All. Weigh heavily in APPLICATION, DASHBOARD, and OPERATIONS.
+**Severity:** MEDIUM. LOW for a single isolated value.
+
+### UI-32: Mixed or duplicated components
+**Tell:** Two component libraries supplying the same kind of control on one surface; hand-rolled
+buttons, inputs, selects, dialogs, or tooltips next to the library's own; several variants of one
+component with different padding, focus ring, or states; a library component restyled differently
+at each call site instead of through its tokens or variants.
+**Why:** Users learn a control once. Two buttons that look and behave differently make one of
+them look broken, and duplicated components drift on states and accessibility.
+**Default correction:** Pick one source per control type. Replace one-offs with the library
+component or a project wrapper around it; move call-site overrides into a variant. See
+`references/design-systems.md`, Mixing systems.
+**Acceptable when:** A headless primitive wrapped in the project's tokens; a library that
+lacks the control (record it in `DESIGN.md` §8); a deliberate marketing-only component that never
+appears in the application.
+**Scope:** All.
+**Severity:** MEDIUM. HIGH when the duplicates behave differently (different keyboard behavior or
+missing states), which is also reported under the matching A11Y or FN rule.
+
 ---
 
 ## CL: Clusters
 
 ### CL-01: Default cluster
 **Tell:** Three or more unexplained, in-scope visual or copy tells (UI, CP) in one view, at least
-one of them MEDIUM. CD and A11Y findings do not count toward clusters, and one issue counts once.
+one of them MEDIUM. CD, A11Y, and UI-29 to UI-32 findings do not count toward clusters, and one
+issue counts once.
 The canonical case: default purple gradient, gradient headline text, eyebrow pill, centered hero
 with two buttons, three icon cards, glass navbar, floating blobs, and hype copy together.
 **Why:** Single tells are often fine. The combination is what users recognize as generated in

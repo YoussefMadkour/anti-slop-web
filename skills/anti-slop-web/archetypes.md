@@ -47,7 +47,8 @@ collaboration).
 errors, keyboard efficiency.
 **Legitimate here:** Sidebar shells, consistent page anatomy, uniform lists and cards for uniform
 objects, standard component-library controls, system fonts, Inter.
-**Weigh heavily:** FN-01 to FN-05, UI-06, UI-07, UI-01 (novelty costs most here), A11Y rules.
+**Weigh heavily:** FN-01 to FN-05, UI-06, UI-07, UI-01 (novelty costs most here), UI-29 to UI-32
+(consistency is the identity here), A11Y rules.
 **Weigh lightly:** UI-03, UI-05, UI-16, UI-17.
 **Load:** `forms.md`, `components.md`, `navigation.md`; `anti-slop-a11y`.
 
@@ -59,7 +60,8 @@ periods; scannability; honest empty and partial-data states.
 **Legitimate here:** KPI rows (when the KPIs matter), grid layouts of same-type widgets, tabular
 figures, muted chrome with color reserved for status and data, a bento overview when widgets
 genuinely differ in importance.
-**Weigh heavily:** UI-07, UI-24, UI-06, IN-02 (invented KPIs and deltas), FN-02, FN-03.
+**Weigh heavily:** UI-07, UI-24, UI-06, IN-02 (invented KPIs and deltas), FN-02, FN-03, UI-29 to
+UI-32.
 **Weigh lightly:** UI-03, UI-05, UI-17.
 **Load:** `dashboards.md`, `charts.md`, `tables.md`.
 
@@ -74,7 +76,8 @@ paths, long-session comfort.
 figures, dark themes for control rooms, high-contrast status colors, minimal animation, small
 type at high density (still meeting contrast).
 **Weigh heavily:** UI-01 (forced asymmetry or novelty is harmful), UI-19 (false indicators
-are dangerous), FN-05, A11Y-08 (color-only status), A11Y-10.
+are dangerous), FN-05, A11Y-08 (color-only status), A11Y-10, UI-30 (status colors must keep their
+role), UI-32.
 **Weigh lightly:** UI-03, UI-05, UI-12, UI-16, UI-17. Do not apply marketing composition rules.
 **Load:** `dashboards.md`, `tables.md`, `charts.md`.
 

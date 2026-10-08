@@ -51,7 +51,7 @@ Legend: **JH** = jhuse25/anti-slop-design-skills, **MB** = miqdadbadjuber/anti-s
 | Destructive actions need confirmation | New, VZ (alert dialog pattern) | FN-05 |
 | Theme parity | MB (R-34) | FN-06 |
 | Verify before delivering, evidence for PASS | MB (R-35) | Built into the audits and the gate ("never claim a check you did not perform") |
-| UI tells (gradients, glass, glow, radius, shadow, cards, bento, badges, icons, imagery, motion) | MB (antislop-ui), VZ (catalog), JH (A.8) | Consolidated into UI-01 to UI-28 with archetype scope |
+| UI tells (gradients, glass, glow, radius, shadow, cards, bento, badges, icons, imagery, motion) | MB (antislop-ui), VZ (catalog), JH (A.8) | Consolidated into UI-01 to UI-28 with archetype scope; UI-29 to UI-32 (visual-system consistency) are original to this kit |
 | App and dashboard tells (default shell, invented stat cards, filler feed, charts without a question, generic table columns) | MB | UI-07, UI-24, IN-02, IN-06, and `references/dashboards.md`, `tables.md` |
 | Delivery gate | MB (Delivery Gate), JH (pre-flight) | Compact one-line-per-gate report, three statuses |
 

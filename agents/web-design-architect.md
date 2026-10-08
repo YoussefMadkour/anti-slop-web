@@ -58,7 +58,9 @@ file disagree, the skill wins.
 
 ### Review (when asked to audit existing UI)
 - Understand the product and its direction first (steps 1 to 3).
-- Run the design, accessibility, and responsive audits.
+- Run the design, accessibility, and responsive audits. The design audit includes the
+  visual-system scan: load the typography, color, components, and design-systems references and
+  inventory type, color, shape, spacing, and component sources (UI-29 to UI-32).
 - Report numbered findings with rule ID, severity, evidence, and a proposed fix, ordered P0 first.
 - Change nothing until the user chooses findings to fix, unless they asked for fixes directly.
 

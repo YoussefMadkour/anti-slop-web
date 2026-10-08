@@ -11,6 +11,7 @@ outputs; the gate summarizes them.
 | Design direction | `DESIGN.md` exists or was updated; the build reads as the declared dials; signature present or restraint executed (UI-27) | Dials and signature named in one line |
 | Brand alignment | Brand tokens, type, and voice applied; no unrequested clone (UI-26, UI-28) | Token source named |
 | Content integrity | No fabricated proof, metrics, claims, or disguised placeholders (IN-01 to IN-06) | "All numbers and quotes supplied by owner" or list of labeled placeholders |
+| Visual system | Type, color, shape, spacing, and components follow the project's system; no open UI-29 to UI-32 finding above LOW | Inventory counts (type sizes vs scale, raw colors, distinct radii, component sources) |
 | Responsive | Responsive audit passed (RS rules) | Widths checked |
 | Accessibility | Accessibility audit passed (A11Y rules) | What was run versus read |
 | Required states | Every state in `DESIGN.md` §11 built for every relevant surface (FN-02 to FN-04) | States listed per surface |
@@ -42,6 +43,7 @@ entry under remaining risks.
 Design direction: PASS (VARIANCE 3 / MOTION 1 / DENSITY 9 / CHARACTER 5; signature: shape-coded status language)
 Brand alignment: PASS (tokens from packages/theme)
 Content integrity: PASS (all figures from live API; no testimonials)
+Visual system: PASS (type 6/6 sizes on scale, 0 raw colors, radii 3/3, one component source)
 Responsive: PASS (320 to 1920, drag-through, touch emulated)
 Accessibility: PASS (keyboard pass, 18 contrast pairs computed, reduced motion checked)
 Required states: PASS (loading, empty, error, partial, offline, permission on all four panels)

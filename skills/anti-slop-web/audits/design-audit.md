@@ -9,6 +9,9 @@ output before delivery, or on an existing UI when asked to review.
 - The rendered UI: run it if at all possible; screenshots at narrow and wide widths help
 - `../rules.md` (IN, FN, UI, CL) and, as relevant, `../../anti-slop-copy/SKILL.md` (CP) and
   `../../anti-slop-code/SKILL.md` (CD)
+- For the visual-system scan, always: `../references/typography.md`, `../references/color.md`,
+  `../references/components.md`, and `../references/design-systems.md`. Load them in review mode
+  too; the short rule entries are not enough to judge a type scale or a token system.
 
 If there is no `DESIGN.md`, audit against the product context you can establish and note
 "no recorded direction" as a remaining risk. Do not invent a direction and then fail the UI
@@ -47,11 +50,56 @@ For each candidate finding:
 Do not flag a convention because it is common. Flag it when it contradicts the content or the
 direction, or when it appears as part of a cluster.
 
-### 5. Cluster check
-Count unexplained, in-scope UI and CP tells per view (each issue once). Three or more with at
+### 5. Visual-system scan (always)
+This scan checks whether the UI follows its own system, which the tell-based scan above does not.
+It runs in every archetype, including ones where UI-16 and UI-17 weigh lightly. Read the system
+first (`DESIGN.md` §5, §6, §8, then tokens, theme or Tailwind config, the component library), then
+inventory what the code and the rendered UI actually use.
+
+**Inventory.** Search the changed files (in review mode, the views under review). Adapt the
+patterns to the stack: CSS, Tailwind classes, CSS-in-JS, or a theme object. For example:
+
+```
+# arbitrary Tailwind values and raw CSS values
+grep -rnoE '(text|leading|font|rounded|shadow|p[xytrbl]?|m[xytrbl]?|gap|space-[xy])-\[[^]]+\]' src
+grep -rnoE 'font-(size|weight|family)|line-height|border-radius|box-shadow' src --include='*.css'
+# colors that bypass tokens
+grep -rnoE '#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(|oklch\(' src
+grep -rnoE '\b(bg|text|border|ring|fill|stroke)-(slate|gray|zinc|neutral|red|blue|green|indigo|violet|purple)-[0-9]{2,3}\b' src
+# component sources
+grep -rhoE "from ['\"][^'\"]+['\"]" src | sort | uniq -c | sort -rn   # which libraries supply UI
+grep -rnE '<(button|input|select|dialog)\b' src
+```
+
+When the UI can run, read computed styles for the main views too (distinct `font-size`,
+`font-family`, `color`, `background-color`, `border-radius`, `box-shadow` values), because
+library internals and global CSS do not show up in a grep.
+
+**Record** a compact inventory, comparing what is used with what the system defines:
+
+```
+Type:       families 2 (system: 2) | sizes 11 (scale: 7; off-scale: 13px, 15px, 15.5px, 22px)
+Color:      tokens used 18 | raw values 9 (#64748b x4, #6366f1 x3, ...) | palette classes 6
+Radius:     5 distinct (scale: 3) | Shadow: 4 distinct (scale: 2) | arbitrary spacing: 7
+Components: shadcn/ui + MUI DatePicker | hand-rolled <button> x3 in /settings
+```
+
+**Then judge** with UI-29 (type), UI-30 (color), UI-31 (shape and spacing), UI-32 (components),
+plus UI-11, UI-13, UI-15, UI-16, and UI-28 where the inventory is their evidence. Use the
+references to judge, not just count: does the type scale have clear steps and roles, do colors
+have roles, does each radius map to an element role, does each control type have one source?
+
+- No `DESIGN.md` and no tokens: derive the de facto system from the dominant values, report
+  drift against it, and list "no recorded visual system" as a remaining risk.
+- Report each drift once, under the most specific rule, with the offending values and locations.
+- A finding is about consistency with the project's system, never about the kit's taste.
+
+### 6. Cluster check
+Count unexplained, in-scope UI and CP tells per view (each issue once; UI-29 to UI-32 do not
+count). Three or more with at
 least one MEDIUM: add one CL-01 finding (HIGH) listing them.
 
-### 6. Code scan (when implementation is in scope)
+### 7. Code scan (when implementation is in scope)
 Walk CD rules against the changed files. Limit findings to what affects users, maintainability
 of the UI, or the delivery claims.
 
